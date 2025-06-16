@@ -4,7 +4,7 @@
 
 Conectar objetos físicos al mundo digital es una barrera. ¿Cómo hacemos que cualquier sticker, camiseta o ticket sea una puerta a la blockchain para recompensas, autenticación o comunidades, de forma sencilla y mágica?
 
-## Nuestra Solución (¡Construida en este Hackathon!)
+## Nuestra Solución 
 
 Hemos desarrollado una Miniapp Web3 habilitada con NFC, utilizando el SDK de SherryLinks y Hardhat. Imagina un sticker con NFC:
 
