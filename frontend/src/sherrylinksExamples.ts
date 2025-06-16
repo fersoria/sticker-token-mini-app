@@ -1,9 +1,28 @@
 import { createMetadata, Metadata, ActionFlow } from '@sherrylinks/sdk';
+import { Abi } from 'viem';
 
 // Import the ABI from App.tsx or define it here for this example
-const STICKER_MANAGER_ABI: any[] = [
-  "function claim(uint256 stickerId, address giverAddress) public",
-  "event StickerClaimed(address indexed recipient, uint256 indexed stickerId, uint256 amount, address indexed giver)"
+const STICKER_MANAGER_ABI: Abi = [
+  {
+    type: 'function',
+    name: 'claim',
+    inputs: [
+      { name: 'stickerId', type: 'uint256' },
+      { name: 'giverAddress', type: 'address' }
+    ],
+    outputs: [],
+    stateMutability: 'nonpayable'
+  },
+  {
+    type: 'event',
+    name: 'StickerClaimed',
+    inputs: [
+      { name: 'recipient', type: 'address', indexed: true },
+      { name: 'stickerId', type: 'uint256', indexed: true },
+      { name: 'amount', type: 'uint256', indexed: false },
+      { name: 'giver', type: 'address', indexed: true }
+    ]
+  }
 ];
 
 const STICKER_MANAGER_CONTRACT_ADDRESS = '0x4606f77C54Fb4FD9Dc22138A024f7613DAa98038';
