@@ -28,7 +28,7 @@ Mini-app para reclamar tokens STICKER en la red Avalanche Fuji. Permite a los us
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/sticker-token-mini-app.git
+   git clone https://github.com/fersoria/sticker-token-mini-app.git
    cd sticker-token-mini-app
    ```
 
@@ -90,4 +90,4 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 Tu Nombre - [@tutwitter](https://twitter.com/tutwitter)
 
-Link del Proyecto: [https://github.com/tu-usuario/sticker-token-mini-app](https://github.com/tu-usuario/sticker-token-mini-app)
+Link del Proyecto: [https://github.com/fersoria/sticker-token-mini-app](https://github.com/fersoria/sticker-token-mini-app)
