@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   async headers() {
     return [
       {
@@ -27,26 +28,17 @@ const nextConfig = {
     ];
   },
   webpack: (config, { isServer, webpack }) => {
-    // Importar 'path' para rutas absolutas, aunque no se usará en este enfoque simplificado.
-    // const path = require('path');
-
     if (!isServer) {
-      // Configurar `fallback` para evitar que Webpack intente incluir módulos nativos de Node.js en el cliente
       config.resolve.fallback = {
         ...config.resolve.fallback,
-        // Explicitamente deshabilita el módulo 'process' de Node.js.
-        // Se proveerá un polyfill globalmente a través de ProvidePlugin.
         process: require.resolve('process/browser'),
-        // Asegura que 'buffer' usa el polyfill correcto.
         buffer: require.resolve('buffer/'),
       };
 
       config.plugins.push(
         new webpack.ProvidePlugin({
           Buffer: ['buffer', 'Buffer'],
-          // Provee 'process' como un polyfill global para el entorno del navegador.
-          // Esto apunta al paquete 'process' instalado en node_modules.
-          process: require.resolve('process/browser'),
+          process: ['process'],
         }),
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

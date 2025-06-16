@@ -15,7 +15,7 @@ export async function GET() {
 
     const metadata = createMetadata({
       url: process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : 'http://localhost:3000',
-      icon: process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/icon.png` : 'http://localhost:3000/icon.png',
+      icon: process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/vite.svg` : 'http://localhost:3000/vite.svg',
       title: 'Claim STICKER Tokens',
       description: 'Claim your STICKER tokens and support the giver',
       actions: [
