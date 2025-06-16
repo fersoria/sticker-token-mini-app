@@ -7,6 +7,10 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.avax-test.network;"
+          },
+          {
             key: 'Access-Control-Allow-Origin',
             value: '*',
           },
@@ -23,28 +27,26 @@ const nextConfig = {
     ];
   },
   webpack: (config, { isServer, webpack }) => {
-    // Importar 'path' para rutas absolutas
-    const path = require('path');
-    const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+    // Importar 'path' para rutas absolutas, aunque no se usará en este enfoque simplificado.
+    // const path = require('path');
 
     if (!isServer) {
-      config.resolve.alias = {
-        ...(config.resolve.alias || {}),
-        'process/browser': path.resolve(__dirname, './node_modules/process/browser.js'),
-        'process': path.resolve(__dirname, './node_modules/process/browser.js'),
-      };
-
+      // Configurar `fallback` para evitar que Webpack intente incluir módulos nativos de Node.js en el cliente
       config.resolve.fallback = {
         ...config.resolve.fallback,
-        process: path.resolve(__dirname, './node_modules/process/browser.js'),
+        // Explicitamente deshabilita el módulo 'process' de Node.js.
+        // Se proveerá un polyfill globalmente a través de ProvidePlugin.
+        process: require.resolve('process/browser'),
+        // Asegura que 'buffer' usa el polyfill correcto.
         buffer: require.resolve('buffer/'),
       };
 
       config.plugins.push(
-        new NodePolyfillPlugin(),
         new webpack.ProvidePlugin({
           Buffer: ['buffer', 'Buffer'],
-          global: ['global'],
+          // Provee 'process' como un polyfill global para el entorno del navegador.
+          // Esto apunta al paquete 'process' instalado en node_modules.
+          process: require.resolve('process/browser'),
         }),
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

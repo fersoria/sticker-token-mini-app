@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 
 // Validar que la dirección del contrato sea válida
-const CONTRACT_ADDRESS = "0xCfe14664A17Fc92BbB6c68A4551397343b78B273";
+const CONTRACT_ADDRESS = "0xE7230739B7A9941aeA0D2Ea81D69702472908827";
 if (!ethers.isAddress(CONTRACT_ADDRESS)) {
   throw new Error('Dirección de contrato inválida');
 }

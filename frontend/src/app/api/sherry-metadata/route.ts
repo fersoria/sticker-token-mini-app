@@ -2,6 +2,8 @@ import { createMetadata } from '@sherrylinks/sdk';
 import { CONFIG } from '../../../config';
 import { Abi } from 'viem';
 
+export const runtime = 'nodejs';
+
 export async function GET() {
   try {
     if (!CONFIG.CONTRACT_ADDRESS || !CONFIG.CONTRACT_ABI) {
