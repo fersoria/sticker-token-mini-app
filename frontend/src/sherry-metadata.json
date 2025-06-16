@@ -1,0 +1,23 @@
+{
+  "url": "https://your-domain.com/sticker-claim",
+  "icon": "https://your-domain.com/icon.png",
+  "title": "STICKER Token Claim",
+  "description": "Claim your STICKER tokens and support the giver",
+  "actions": [
+    {
+      "type": "dynamic",
+      "label": "Claim STICKER Tokens",
+      "description": "Claim 100 STICKER tokens and give 50 to the giver",
+      "chain": "avalanche-fuji",
+      "path": "/api/claim",
+      "params": [
+        {
+          "name": "giverAddress",
+          "type": "string",
+          "required": true,
+          "description": "Address of the giver"
+        }
+      ]
+    }
+  ]
+} 
