@@ -23,22 +23,28 @@ const nextConfig = {
     ];
   },
   webpack: (config, { isServer, webpack }) => {
+    // Importar 'path' para rutas absolutas
+    const path = require('path');
+    const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+
     if (!isServer) {
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
-        'process/browser': require.resolve('process/browser'),
-        'process': require.resolve('process/browser'),
+        'process/browser': path.resolve(__dirname, './node_modules/process/browser.js'),
+        'process': path.resolve(__dirname, './node_modules/process/browser.js'),
       };
 
       config.resolve.fallback = {
         ...config.resolve.fallback,
-        process: require.resolve('process/browser'),
+        process: path.resolve(__dirname, './node_modules/process/browser.js'),
         buffer: require.resolve('buffer/'),
       };
 
       config.plugins.push(
+        new NodePolyfillPlugin(),
         new webpack.ProvidePlugin({
           Buffer: ['buffer', 'Buffer'],
+          global: ['global'],
         }),
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
