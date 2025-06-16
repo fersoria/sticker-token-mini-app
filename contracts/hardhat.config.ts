@@ -3,12 +3,17 @@ require('dotenv').config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.24",
+  solidity: "0.8.20",
   networks: {
     fuji: {
-      url: "https://api.avax-test.network/ext/bc/C/rpc",
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.AVALANCHE_FUJI_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 43113
     }
   },
-  CONTRACT_ADDRESS: "0xcDCA5A304CeDE41463eEbD61CEe221C382C99AC4"
+  etherscan: {
+    apiKey: {
+      avalancheFuji: process.env.SNOWTRACE_API_KEY
+    }
+  },
 };
